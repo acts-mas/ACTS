@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#176b50">
+  <title>ACTS — Learning Who Talks to Whom</title>
+  <meta name="description" content="Learning Who Talks to Whom: Role-Aware Communication Topology Scheduling for Efficient LLM Multi-Agent Collaboration. Explore ACTS, its dual-attention framework, and results across nine benchmarks.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ACTS — Learning Who Talks to Whom">
+  <meta property="og:description" content="Role-aware communication topology scheduling for efficient LLM multi-agent collaboration.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="topology.css">
+  <script defer src="site-config.js"></script>
+  <script defer src="results-data.js"></script>
+  <script defer src="topology.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="ACTS home">
+        <svg width="31" height="31" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 9 24 12 14 25Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="9" r="4" fill="currentColor"/><circle cx="24" cy="12" r="3.5" fill="#dd8a52"/><circle cx="14" cy="25" r="3.5" fill="#54b59a"/></svg>
+        ACTS <span class="brand-divider"></span><span class="brand-caption">Research</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#analysis">Analysis</a>
+      </nav>
+      <a class="header-paper" data-paper-link href="assets/acts-paper.pdf" target="_blank" rel="noopener">Read paper <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="paper-title">
+      <div class="eyebrow hero-eyebrow"><span class="status-dot"></span> LLM MULTI-AGENT COLLABORATION</div>
+      <h1 id="paper-title">Learning Who Talks<br>to <span class="hero-word">Whom<svg viewBox="0 0 260 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 10Q122 -3 257 7"/></svg></span><span class="title-period">.</span></h1>
+      <p class="paper-subtitle">Role-Aware Communication Topology Scheduling<br class="desktop-break"> for Efficient LLM Multi-Agent Collaboration</p>
+      <div id="authors" class="authors" hidden></div>
+      <div id="affiliations" class="affiliations" hidden></div>
+      <p class="hero-description">Better collaboration is a question of connection.<br> ACTS learns when to communicate, who to contact, and how to value each agent’s contribution.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" data-paper-link href="assets/acts-paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5zM11.5 2.5v4H15M8 10h4M8 13h4"/></svg> Read the paper <span aria-hidden="true">↗</span></a>
+        <a class="button button-outline" href="#results">Explore the results <span aria-hidden="true">↓</span></a>
+        <a id="code-link" class="button button-outline" hidden>Code <span aria-hidden="true">↗</span></a>
+        <a id="arxiv-link" class="button button-outline" hidden>arXiv <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-note">Adaptive Communication-Topology Scheduling <span>·</span> Centralized training, decentralized execution</div>
+    </section>
+
+    <div class="wrap demo-wrap">
+      <div id="topology-demo"></div>
+      <noscript><div class="no-script"><p>ACTS adapts directed communication links across rounds. Enable JavaScript to explore the topology and interactive results.</p><img src="assets/overview.webp" alt="ACTS framework overview" width="2024" height="1078"></div></noscript>
+    </div>
+
+    <div class="wrap evidence-strip" aria-label="Reported evaluation highlights">
+      <div class="evidence-item"><span class="evidence-number">9<span class="small-plus"> / 4</span></span><span class="evidence-label">Benchmarks / task domains</span></div>
+      <div class="evidence-item"><span class="evidence-number">2</span><span class="evidence-label">Frozen LLM backbones</span></div>
+      <div class="evidence-item"><span class="evidence-number">75.01<span class="small-unit">%</span></span><span class="evidence-label">GPT-OSS-120B · macro accuracy</span></div>
+      <div class="evidence-item"><span class="evidence-number">69.43<span class="small-unit">%</span></span><span class="evidence-label">DeepSeek-V4-Flash · macro accuracy</span></div>
+    </div>
+
+    <section id="overview" class="section wrap overview-section">
+      <div class="section-label"><span>01</span> THE IDEA</div>
+      <div class="overview-layout">
+        <h2>More agents.<br> More messages.<br><span class="muted-heading">Better answers?</span></h2>
+        <div class="overview-copy">
+          <p class="lead">Not every exchange helps. Effective collaboration depends on connecting complementary roles at the right moment.</p>
+          <p>LLM multi-agent systems can bring together different perspectives, but repeated communication adds token overhead. Fixed graphs cannot adapt as reasoning evolves, while topology schedulers may overlook agent roles and the structure of the communication graph.</p>
+          <p><strong>ACTS learns the communication policy itself.</strong> Role-conditioned relational attention selects directed partners. A topological attention mixer uses the current graph to evaluate team decisions during centralized training. The scheduler balances task performance and token use while the backbone LLMs remain frozen.</p>
+          <details class="abstract-details">
+            <summary>Read the research summary <span aria-hidden="true">+</span></summary>
+            <p>We propose a role-aware framework for adaptive communication-topology scheduling in LLM-based multi-agent collaboration. ACTS separates communication-mode selection from partner selection: local action-value functions select a mode, while relational attention assigns directional relevance scores using role information and recurrent agent states. Together, modes and partner sets define a variable-cardinality directed graph for the next round.</p>
+            <p>Under centralized training with decentralized execution, a topological attention mixer encodes incoming and outgoing neighborhoods of the pre-decision graph to learn topology-dependent utility weights. Evaluations across nine benchmarks report macro-average accuracies of 75.01% on GPT-OSS-120B and 69.43% on DeepSeek-V4-Flash, improving over Agent Q-Mix by 3.18 and 6.19 percentage points, respectively.</p>
+          </details>
+        </div>
+      </div>
+      <div class="question-strip"><span class="small-label">THE CENTRAL QUESTION</span><p>Who should communicate with whom,<br class="mobile-break"> and when is communication worth it?</p><span class="question-arrow" aria-hidden="true">↗</span></div>
+    </section>
+
+    <section id="method" class="section section-tint">
+      <div class="wrap">
+        <div class="section-label"><span>02</span> THE METHOD</div>
+        <div class="section-heading"><h2>Two kinds of attention.<br>One coordinated team.</h2><p>Select useful interactions at execution time.<br>Learn their value through topology-aware training.</p></div>
+        <div class="mechanisms">
+          <article class="mechanism">
+            <div class="mechanism-meta"><span class="mechanism-index">A</span><span class="small-label">RELATIONAL ATTENTION</span><span class="mechanism-tag">Partner selection</span></div>
+            <h3>Connect complementary roles.</h3>
+            <p>Agent roles and recurrent local states determine directional relevance scores. Communication modes and above-mean attention scores select a variable number of partners for the next round.</p>
+            <div class="formula">roles + local context <span>→</span> directed partner scores <span>→</span> G<sup>t+1</sup></div>
+          </article>
+          <article class="mechanism">
+            <div class="mechanism-meta"><span class="mechanism-index secondary">B</span><span class="small-label">TOPOLOGICAL ATTENTION</span><span class="mechanism-tag">Value factorization</span></div>
+            <h3>Learn contributions in context.</h3>
+            <p>The centralized mixer encodes incoming and outgoing neighborhoods in the current graph G<sup>t</sup>. Nonnegative attention weights combine local utilities into the team action value.</p>
+            <div class="formula">current graph + global state <span>→</span> utility weights <span>→</span> Q<sub>tot</sub></div>
+          </article>
+        </div>
+        <figure class="paper-figure overview-figure">
+          <div class="figure-heading"><span>ACTS at a glance</span><button type="button" class="text-button" data-zoom="assets/overview.webp" data-caption="Figure 2 · Overview of ACTS. The current topology conditions the local encoder and centralized mixer; selected actions induce the next-round topology.">Expand figure <span aria-hidden="true">↗</span></button></div>
+          <button type="button" class="image-button" data-zoom="assets/overview.webp" data-caption="Figure 2 · Overview of ACTS. The current topology conditions the local encoder and centralized mixer; selected actions induce the next-round topology." aria-label="Enlarge ACTS framework overview"><img src="assets/overview.webp" alt="ACTS framework: task roles feed the communication scheduler and LLM agents during decentralized execution. Centralized training uses a topology-aware value mixer and TD loss to balance accuracy and tokens." width="2024" height="1078" loading="lazy"></button>
+          <figcaption><span>FIGURE 2</span> The framework combines role-aware partner selection with topology-aware value factorization. Figure reproduced from the manuscript.</figcaption>
+        </figure>
+        <div class="method-foot"><p><strong>Timing matters.</strong> The mixer evaluates the current context G<sup>t</sup>; communication actions construct G<sup>t+1</sup> for the next round. The centralized mixer is used during training.</p><button class="text-button" type="button" data-zoom="assets/architecture.webp" data-caption="Figure 3 · Detailed architecture of ACTS, reproduced from the manuscript.">View detailed architecture <span aria-hidden="true">↗</span></button></div>
+      </div>
+    </section>
+
+    <section id="results" class="section wrap">
+      <div class="section-label"><span>03</span> THE EVIDENCE</div>
+      <div class="section-heading results-heading"><div><h2>Stronger answers.<br>More selective communication.</h2><p class="section-intro">Nine benchmarks. Two frozen backbones. The same evaluation protocol.</p></div><a class="text-button" href="assets/results.csv" download>Download results <span aria-hidden="true">↓</span></a></div>
+      <div class="results-toolbar"><span class="small-label">SELECT BACKBONE</span><div class="segmented" role="group" aria-label="Results backbone"><button type="button" data-model="gpt" aria-pressed="true">GPT-OSS-120B</button><button type="button" data-model="deepseek" aria-pressed="false">DeepSeek-V4-Flash</button></div></div>
+      <div class="result-callout" aria-live="polite" aria-atomic="true"><div><span class="result-gain" id="average-gain">+3.18</span><span class="result-gain-unit">percentage points</span></div><p>Higher macro-average accuracy than Agent Q-Mix<br><strong id="average-comparison">75.01% vs. 71.83% · GPT-OSS-120B</strong></p><span class="result-source">TABLE 1</span></div>
+      <div class="results-grid">
+        <article class="chart-panel accuracy-panel"><div class="panel-heading"><div><h3>Accuracy across nine benchmarks</h3><p>Unweighted macro-average (%) · higher is better</p></div><span class="panel-index">01</span></div><div id="accuracy-bars" class="accuracy-bars"></div><div class="chart-legend"><span><i class="legend-dot ours"></i>ACTS</span><span><i class="legend-dot learned"></i>Agent Q-Mix</span><span><i class="legend-dot baseline"></i>Other evaluated methods</span></div></article>
+        <article class="chart-panel efficiency-panel"><div class="panel-heading"><div><h3>Accuracy meets token efficiency</h3><p>Per-sample tokens vs. task accuracy</p></div><span class="panel-index">02</span></div><div class="task-toolbar"><div class="segmented segmented-small" role="group" aria-label="Efficiency benchmark"><button type="button" data-task="hotpot" aria-pressed="true">HotpotQA</button><button type="button" data-task="hle" aria-pressed="false">HLE</button></div><span class="plot-hint">Upper left is better ↖</span></div><div id="efficiency-chart" class="efficiency-chart"></div><div id="chart-tooltip" class="chart-tooltip" aria-live="polite">Hover or focus a point to inspect a method.</div><div id="efficiency-insight" class="efficiency-insight"></div><details class="compact-details"><summary>View exact values</summary><div id="efficiency-table"></div></details></article>
+      </div>
+      <p class="source-note">Source: manuscript Tables 1 and 3. Token reductions are calculated from rounded per-sample counts. Direct Prompting uses fewer tokens than ACTS; ACTS uses the fewest tokens among the evaluated multi-agent methods in these four settings.</p>
+      <details class="full-results"><summary><span>All methods. Every benchmark.</span><span class="summary-action">View full results <span aria-hidden="true">+</span></span></summary><p class="scroll-hint">Scroll horizontally to explore all nine benchmarks →</p><div class="table-scroll" tabindex="0" role="region" aria-label="All benchmark accuracy results"><table id="benchmark-table"></table></div><p class="table-note">Accuracy (%). Bold values are best or tied best in each column. Avg. is the reported unweighted macro-average. HLE uses the first 250 questions.</p></details>
+      <div class="evaluation-note"><span class="small-label">EVALUATION SCOPE</span><p>Three role-conditioned agents and a final answer-aggregation node. Results averaged over three independent random seeds. Coding, reasoning and knowledge, multi-hop question answering, and competition mathematics. Reported comparisons are specific to the manuscript’s evaluation setup.</p></div>
+    </section>
+
+    <section id="analysis" class="section section-tint">
+      <div class="wrap">
+        <div class="section-label"><span>04</span> A CLOSER LOOK</div>
+        <div class="section-heading"><h2>Each component<br>earns its place.</h2><p>Ablations separate the effects of topology-aware value learning,<br>adaptive partner selection, and role information.</p></div>
+        <div class="ablation-panel"><div class="ablation-toolbar"><div><h3>What changes when a component is removed?</h3><p>Macro-average accuracy and per-sample tokens over nine benchmarks.</p></div><div class="segmented segmented-small" role="group" aria-label="Ablation backbone"><button type="button" data-model="gpt" aria-pressed="true">GPT-OSS-120B</button><button type="button" data-model="deepseek" aria-pressed="false">DeepSeek-V4-Flash</button></div></div><div class="table-scroll" tabindex="0" role="region" aria-label="Ablation results"><table id="ablation-table"></table></div><p class="table-note">Source: Table 2. These are trained ablation variants; the QMIX mixer replacement is a different comparison from the Agent Q-Mix baseline.</p></div>
+        <div class="behavior-layout">
+          <div class="behavior-copy"><span class="small-label">COMMUNICATE WHEN IT HELPS</span><h3>Collaborate selectively.<br>Know when to stop.</h3><p>On HotpotQA, complementary evidence supports sustained interaction. On HLE, where the manuscript finds little accuracy uplift from collaboration, the learned policy deactivates agents more often.</p><div class="behavior-stats"><div><strong>4.2<span>%</span></strong><span>Off actions · HotpotQA</span></div><span class="behavior-arrow" aria-hidden="true">→</span><div><strong>21.3<span>%</span></strong><span>Off actions · HLE</span></div></div><p class="source-note">DeepSeek-V4-Flash · Section 4.3.2. “Off” skips the agent’s LLM call; “solo” keeps independent inference without communication.</p></div>
+          <figure class="behavior-figure"><button type="button" class="image-button" data-zoom="assets/action-distribution.webp" data-caption="Figure 6 · Communication-action distributions on HotpotQA and HLE with DeepSeek-V4-Flash." aria-label="Enlarge communication-action distribution chart"><img src="assets/action-distribution.webp" alt="Action distributions on HotpotQA and HLE. Off actions increase from 4.2% on HotpotQA to 21.3% on HLE." width="2820" height="1289" loading="lazy"></button><figcaption><span>FIGURE 6</span> Different tasks induce different communication patterns.</figcaption></figure>
+        </div>
+        <details class="case-details"><summary><span>Follow the communication across rounds</span><span class="summary-action">See the paper’s case study <span aria-hidden="true">+</span></span></summary><figure class="paper-figure"><button type="button" class="image-button" data-zoom="assets/case-study.webp" data-caption="Figure 8 · The manuscript’s trajectory-level examples for HotpotQA and HLE." aria-label="Enlarge trajectory case study"><img src="assets/case-study.webp" alt="Manuscript case study showing selective routing on a HotpotQA question and progressive agent deactivation on an HLE question." width="2406" height="1200" loading="lazy"></button><figcaption><span>FIGURE 8</span> Selected communication trajectories from the manuscript, distinct from the illustrative interactive diagram above.</figcaption></figure></details>
+      </div>
+    </section>
+
+    <section id="paper" class="section wrap paper-section">
+      <div class="paper-card"><div class="paper-card-top"><span class="eyebrow">EXPLORE THE RESEARCH</span><svg width="44" height="44" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 9 24 12 14 25Z" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="8" cy="9" r="3" fill="currentColor"/><circle cx="24" cy="12" r="3" fill="currentColor"/><circle cx="14" cy="25" r="3" fill="currentColor"/></svg></div><h2>The right conversation<br>can make all the difference.</h2><p>Read the full formulation, experimental setup,<br class="desktop-break"> benchmark results, and theoretical analysis.</p><div class="hero-actions"><a class="button button-light" data-paper-link href="assets/acts-paper.pdf" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a><a class="button button-on-dark" href="assets/results.csv" download>Download result tables <span aria-hidden="true">↓</span></a></div><p class="paper-version">PDF: supplied research manuscript.</p></div>
+      <section id="citation" class="citation" hidden><div class="figure-heading"><h3>Citation</h3><button id="copy-citation" type="button" class="text-button">Copy BibTeX</button></div><pre><code id="bibtex"></code></pre><p id="copy-status" role="status"></p></section>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap"><div><a class="brand" href="#top">ACTS</a><p>Adaptive Communication-Topology Scheduling</p></div><p>Learning who talks to whom.</p><a class="text-button" href="#top">Back to top <span aria-hidden="true">↑</span></a></footer>
+
+  <dialog id="figure-dialog" aria-labelledby="dialog-caption"><div class="dialog-top"><span>ACTS · RESEARCH FIGURE</span><button type="button" class="dialog-close" aria-label="Close figure">Close <span aria-hidden="true">×</span></button></div><div class="dialog-image-wrap"><img id="dialog-image" alt=""></div><p id="dialog-caption"></p></dialog>
+</body>
+</html>
