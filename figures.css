@@ -1,0 +1,328 @@
+/* Paper figures are part of the reading flow, at their original aspect ratio. */
+.research-figure {
+  min-width: 0;
+  background: #fff;
+}
+
+.research-figure .figure-heading h3 {
+  font-size: 17px;
+  line-height: 1.4;
+  letter-spacing: -.025em;
+}
+
+.research-figure .figure-heading > a {
+  flex-shrink: 0;
+}
+
+.research-figure .image-button {
+  position: relative;
+  padding: 28px 28px 18px;
+}
+
+.research-figure .image-button img {
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+.research-figure figcaption {
+  border-top: 1px solid #edf0e9;
+  padding: 18px 26px;
+  font-size: 12px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.research-figure figcaption > span:first-child {
+  display: inline-block;
+  color: var(--green);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: .12em;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.research-figure figcaption strong {
+  color: var(--ink);
+  font-weight: 550;
+}
+
+.research-figure .figure-note {
+  display: block;
+  margin-top: 5px;
+  color: #728076;
+  font-size: 10px;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+.figure-enlarge {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  padding: 6px 9px;
+  border: 1px solid #dce5dc;
+  border-radius: 5px;
+  background: #ffffffed;
+  color: var(--green);
+  font-size: 10px;
+  line-height: 1.3;
+  opacity: 0;
+  transition: opacity .18s;
+  pointer-events: none;
+}
+
+.image-button:hover .figure-enlarge,
+.image-button:focus-visible .figure-enlarge {
+  opacity: 1;
+}
+
+.teaser-figure {
+  max-width: 1040px;
+  margin-top: 14px;
+  margin-bottom: 24px;
+}
+
+.teaser-figure .image-button {
+  padding: 8px 8px 20px;
+}
+
+.teaser-figure figcaption {
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 18px 16px 12px;
+}
+
+.overview-figure {
+  margin-bottom: 28px;
+}
+
+.overview-figure .image-button img {
+  max-width: 960px;
+}
+
+.architecture-figure {
+  margin-top: 28px;
+}
+
+.topology-explainer {
+  margin-top: 28px;
+  border-block: 1px solid #dce5dc;
+}
+
+.topology-explainer > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 0;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.topology-explainer[open] {
+  padding-bottom: 26px;
+}
+
+.efficiency-figure {
+  margin-bottom: 32px;
+}
+
+.efficiency-figure .image-button {
+  padding: 24px 12px 20px;
+}
+
+.figure-transition {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0 20px;
+  margin-bottom: 24px;
+}
+
+.figure-transition .small-label,
+.analysis-heading .small-label {
+  color: var(--green);
+  font-size: 9px;
+}
+
+.figure-transition p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.information-figure .image-button img {
+  max-width: 760px;
+}
+
+.analysis-heading {
+  margin: 48px 0 22px;
+}
+
+.analysis-heading h3 {
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.behavior-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+  margin-top: 58px;
+}
+
+.behavior-copy {
+  max-width: 780px;
+}
+
+.behavior-copy h3 {
+  font-size: 31px;
+}
+
+.behavior-copy h3 br {
+  display: none;
+}
+
+.behavior-copy h3 br::after {
+  content: " ";
+}
+
+.action-figure .image-button img {
+  max-width: 920px;
+}
+
+.heatmap-figure,
+.case-figure {
+  margin-top: 36px;
+}
+
+.heatmap-figure .image-button img {
+  max-width: 920px;
+}
+
+@media (max-width: 780px) {
+  .research-figure .figure-heading {
+    padding: 16px 18px;
+    gap: 12px;
+  }
+
+  .research-figure .figure-heading h3 {
+    font-size: 15px;
+  }
+
+  .research-figure .image-button {
+    padding: 18px 12px 14px;
+  }
+
+  .research-figure figcaption {
+    padding: 15px 18px;
+    font-size: 11px;
+  }
+
+  .research-figure .figure-note {
+    font-size: 10px;
+  }
+
+  .teaser-figure {
+    margin-top: 10px;
+    margin-bottom: 12px;
+  }
+
+  .teaser-figure .image-button {
+    padding: 4px 0 15px;
+  }
+
+  .teaser-figure figcaption {
+    padding-inline: 2px;
+  }
+
+  .efficiency-figure .image-button {
+    padding: 18px 6px;
+  }
+
+  .figure-enlarge {
+    opacity: 1;
+    font-size: 9px;
+    right: 8px;
+    bottom: 6px;
+    padding: 4px 6px;
+  }
+
+  .topology-explainer > summary {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-block: 18px;
+  }
+
+  .analysis-heading {
+    margin-top: 36px;
+  }
+
+  .analysis-heading h3 {
+    font-size: 23px;
+  }
+
+  .behavior-copy h3 {
+    font-size: 29px;
+  }
+
+  .behavior-copy h3 br {
+    display: initial;
+  }
+}
+
+@media (max-width: 480px) {
+  .research-figure .figure-heading {
+    padding: 14px;
+    align-items: flex-start;
+  }
+
+  .research-figure .figure-heading h3 {
+    font-size: 14px;
+    max-width: 70%;
+  }
+
+  .research-figure .figure-heading > a {
+    font-size: 9px;
+    line-height: 1.6;
+  }
+
+  .research-figure figcaption {
+    font-size: 10px;
+    padding: 14px;
+  }
+
+  .research-figure .figure-note {
+    font-size: 9px;
+  }
+
+  .teaser-figure figcaption {
+    padding-inline: 0;
+  }
+
+  .figure-transition p {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figure-enlarge {
+    transition: none;
+  }
+}
+
+@media print {
+  .figure-enlarge,
+  .topology-explainer {
+    display: none;
+  }
+
+  .research-figure {
+    break-inside: avoid;
+  }
+}

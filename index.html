@@ -12,6 +12,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="topology.css">
+  <link rel="stylesheet" href="figures.css">
   <script defer src="site-config.js"></script>
   <script defer src="results-data.js"></script>
   <script defer src="topology.js"></script>
@@ -49,10 +50,13 @@
       <div class="hero-note">Adaptive Communication-Topology Scheduling <span>·</span> Centralized training, decentralized execution</div>
     </section>
 
-    <div class="wrap demo-wrap">
-      <div id="topology-demo"></div>
-      <noscript><div class="no-script"><p>ACTS adapts directed communication links across rounds. Enable JavaScript to explore the topology and interactive results.</p><img src="assets/overview.webp" alt="ACTS framework overview" width="2024" height="1078"></div></noscript>
-    </div>
+    <figure id="motivation-figure" class="research-figure teaser-figure wrap">
+      <button type="button" class="image-button" data-zoom="assets/motivation.webp" data-caption="Figure 1 · Why communication topology matters. ACTS combines role-aware partner selection with topology-aware value mixing." aria-label="Enlarge the motivation and topology comparison figure">
+        <img src="assets/motivation.webp" alt="Why topology scheduling matters: single-agent limitations, redundant multi-agent exchanges, and a comparison of static, centralized adaptive, decentralized adaptive, and ACTS communication methods." width="2258" height="1266" fetchpriority="high">
+        <span class="figure-enlarge" aria-hidden="true">View full size ↗</span>
+      </button>
+      <figcaption><span>FIGURE 1</span> <strong>Better collaboration starts with better connections.</strong> ACTS learns which partners to contact and how to value their contributions within the communication graph.</figcaption>
+    </figure>
 
     <div class="wrap evidence-strip" aria-label="Reported evaluation highlights">
       <div class="evidence-item"><span class="evidence-number">9<span class="small-plus"> / 4</span></span><span class="evidence-label">Benchmarks / task domains</span></div>
@@ -83,6 +87,11 @@
       <div class="wrap">
         <div class="section-label"><span>02</span> THE METHOD</div>
         <div class="section-heading"><h2>Two kinds of attention.<br>One coordinated team.</h2><p>Select useful interactions at execution time.<br>Learn their value through topology-aware training.</p></div>
+        <figure class="paper-figure research-figure overview-figure">
+          <div class="figure-heading"><h3>ACTS at a glance</h3><a class="text-button" href="assets/overview.webp" target="_blank" rel="noopener">Open original <span aria-hidden="true">↗</span></a></div>
+          <button type="button" class="image-button" data-zoom="assets/overview.webp" data-caption="Figure 2 · ACTS at a glance. Communication modes and partners are selected during decentralized execution; centralized training combines agent utilities." aria-label="Enlarge ACTS framework overview"><img src="assets/overview.webp" alt="ACTS framework with a decentralized execution branch for communication scheduling and LLM coordination, and a centralized training branch for topology-aware value factorization." width="2024" height="1078" loading="lazy"><span class="figure-enlarge" aria-hidden="true">View full size ↗</span></button>
+          <figcaption><span>FIGURE 2</span> Agents select communication modes and partners during decentralized execution. Centralized training balances answer quality and token use.<span class="figure-note">Roles and node counts in the original illustration are schematic; experiments use three agents.</span></figcaption>
+        </figure>
         <div class="mechanisms">
           <article class="mechanism">
             <div class="mechanism-meta"><span class="mechanism-index">A</span><span class="small-label">RELATIONAL ATTENTION</span><span class="mechanism-tag">Partner selection</span></div>
@@ -97,18 +106,24 @@
             <div class="formula">current graph + global state <span>→</span> utility weights <span>→</span> Q<sub>tot</sub></div>
           </article>
         </div>
-        <figure class="paper-figure overview-figure">
-          <div class="figure-heading"><span>ACTS at a glance</span><button type="button" class="text-button" data-zoom="assets/overview.webp" data-caption="Figure 2 · Overview of ACTS. The current topology conditions the local encoder and centralized mixer; selected actions induce the next-round topology.">Expand figure <span aria-hidden="true">↗</span></button></div>
-          <button type="button" class="image-button" data-zoom="assets/overview.webp" data-caption="Figure 2 · Overview of ACTS. The current topology conditions the local encoder and centralized mixer; selected actions induce the next-round topology." aria-label="Enlarge ACTS framework overview"><img src="assets/overview.webp" alt="ACTS framework: task roles feed the communication scheduler and LLM agents during decentralized execution. Centralized training uses a topology-aware value mixer and TD loss to balance accuracy and tokens." width="2024" height="1078" loading="lazy"></button>
-          <figcaption><span>FIGURE 2</span> The framework combines role-aware partner selection with topology-aware value factorization. Figure reproduced from the manuscript.</figcaption>
+        <figure class="paper-figure research-figure architecture-figure">
+          <div class="figure-heading"><h3>Inside the dual-attention scheduler</h3><a class="text-button" href="assets/architecture.webp" target="_blank" rel="noopener">Open original <span aria-hidden="true">↗</span></a></div>
+          <button type="button" class="image-button" data-zoom="assets/architecture.webp" data-caption="Figure 3 · Relational attention supports local decisions and directed partner scoring. Topological attention combines agent utilities during centralized training. The original schematic uses earlier graph indexing." aria-label="Enlarge the dual-attention architecture"><img src="assets/architecture.webp" alt="Detailed ACTS architecture with a role-aware recurrent local network, relational attention for partner scoring, and topological attention for centralized value mixing." width="1600" height="730" loading="lazy"><span class="figure-enlarge" aria-hidden="true">View full size ↗</span></button>
+          <figcaption><span>FIGURE 3</span> Relational attention supports local decisions and directed partner scoring. Topological attention combines agent utilities during centralized training.<span class="figure-note">Graph timing in the current formulation: G<sup>t</sup> conditions the decision and training mixer; selected actions construct G<sup>t+1</sup>. The original schematic uses earlier graph indexing.</span></figcaption>
         </figure>
-        <div class="method-foot"><p><strong>Timing matters.</strong> The mixer evaluates the current context G<sup>t</sup>; communication actions construct G<sup>t+1</sup> for the next round. The centralized mixer is used during training.</p><button class="text-button" type="button" data-zoom="assets/architecture.webp" data-caption="Figure 3 · Detailed architecture of ACTS, reproduced from the manuscript.">View detailed architecture <span aria-hidden="true">↗</span></button></div>
+        <details class="topology-explainer"><summary><span>Explore a three-agent communication sequence</span><span class="summary-action">Interactive illustration <span aria-hidden="true">+</span></span></summary><div id="topology-demo"></div><noscript><p class="source-note">Enable JavaScript to explore the illustrative communication sequence. The paper figures above remain available.</p></noscript></details>
       </div>
     </section>
 
     <section id="results" class="section wrap">
       <div class="section-label"><span>03</span> THE EVIDENCE</div>
       <div class="section-heading results-heading"><div><h2>Stronger answers.<br>More selective communication.</h2><p class="section-intro">Nine benchmarks. Two frozen backbones. The same evaluation protocol.</p></div><a class="text-button" href="assets/results.csv" download>Download results <span aria-hidden="true">↓</span></a></div>
+      <figure class="paper-figure research-figure efficiency-figure">
+        <div class="figure-heading"><h3>Accuracy and token use</h3><a class="text-button" href="assets/efficiency.webp" target="_blank" rel="noopener">Open original <span aria-hidden="true">↗</span></a></div>
+        <button type="button" class="image-button" data-zoom="assets/efficiency.webp" data-caption="Figure 4 · The original manuscript's accuracy–token plots for HotpotQA and HLE across two backbones. Use the interactive comparison for exact values from Tables 1 and 3." aria-label="Enlarge the manuscript accuracy and token comparison"><img src="assets/efficiency.webp" alt="Four original manuscript panels comparing accuracy and per-sample tokens on HotpotQA and HLE, for GPT-OSS-120B and DeepSeek-V4-Flash." width="6828" height="1913" loading="lazy"><span class="figure-enlarge" aria-hidden="true">View full size ↗</span></button>
+        <figcaption><span>FIGURE 4</span> Accuracy–token comparisons across two tasks and two backbones. Direct prompting uses fewer tokens; ACTS uses the fewest among the evaluated multi-agent methods.<span class="figure-note">Several HLE points in the original graphic differ from Table 1. The interactive results below use the numerical values in Tables 1 and 3.</span></figcaption>
+      </figure>
+      <div class="figure-transition"><span class="small-label">EXPLORE THE NUMBERS</span><p>Switch the backbone and task to inspect the reported results.</p></div>
       <div class="results-toolbar"><span class="small-label">SELECT BACKBONE</span><div class="segmented" role="group" aria-label="Results backbone"><button type="button" data-model="gpt" aria-pressed="true">GPT-OSS-120B</button><button type="button" data-model="deepseek" aria-pressed="false">DeepSeek-V4-Flash</button></div></div>
       <div class="result-callout" aria-live="polite" aria-atomic="true"><div><span class="result-gain" id="average-gain">+3.18</span><span class="result-gain-unit">percentage points</span></div><p>Higher macro-average accuracy than Agent Q-Mix<br><strong id="average-comparison">75.01% vs. 71.83% · GPT-OSS-120B</strong></p><span class="result-source">TABLE 1</span></div>
       <div class="results-grid">
@@ -124,12 +139,27 @@
       <div class="wrap">
         <div class="section-label"><span>04</span> A CLOSER LOOK</div>
         <div class="section-heading"><h2>Each component<br>earns its place.</h2><p>Ablations separate the effects of topology-aware value learning,<br>adaptive partner selection, and role information.</p></div>
+        <figure class="paper-figure research-figure information-figure">
+          <div class="figure-heading"><h3>Where collaboration adds information</h3><a class="text-button" href="assets/information-gain.webp" target="_blank" rel="noopener">Open original <span aria-hidden="true">↗</span></a></div>
+          <button type="button" class="image-button" data-zoom="assets/information-gain.webp" data-caption="Figure 5 · Mean accuracy gains over direct prompting for three topology families. The benefit of collaboration varies across benchmarks and backbone models." aria-label="Enlarge the information-gain analysis"><img src="assets/information-gain.webp" alt="Mean accuracy gains over direct prompting for static, centralized adaptive, and decentralized topology families across benchmarks, shown separately for the two backbones." width="3379" height="3120" loading="lazy"><span class="figure-enlarge" aria-hidden="true">View full size ↗</span></button>
+          <figcaption><span>FIGURE 5</span> The benefit of collaboration varies by task and backbone. Bars show the mean accuracy gain of three topology families over direct prompting.<span class="figure-note">IG ≈ 0 follows the manuscript's empirical sampling-noise criterion; the bars represent topology families rather than ACTS alone.</span></figcaption>
+        </figure>
+        <div class="analysis-heading"><span class="small-label">COMPONENT ABLATIONS</span><h3>What does each part contribute?</h3></div>
         <div class="ablation-panel"><div class="ablation-toolbar"><div><h3>What changes when a component is removed?</h3><p>Macro-average accuracy and per-sample tokens over nine benchmarks.</p></div><div class="segmented segmented-small" role="group" aria-label="Ablation backbone"><button type="button" data-model="gpt" aria-pressed="true">GPT-OSS-120B</button><button type="button" data-model="deepseek" aria-pressed="false">DeepSeek-V4-Flash</button></div></div><div class="table-scroll" tabindex="0" role="region" aria-label="Ablation results"><table id="ablation-table"></table></div><p class="table-note">Source: Table 2. These are trained ablation variants; the QMIX mixer replacement is a different comparison from the Agent Q-Mix baseline.</p></div>
         <div class="behavior-layout">
-          <div class="behavior-copy"><span class="small-label">COMMUNICATE WHEN IT HELPS</span><h3>Collaborate selectively.<br>Know when to stop.</h3><p>On HotpotQA, complementary evidence supports sustained interaction. On HLE, where the manuscript finds little accuracy uplift from collaboration, the learned policy deactivates agents more often.</p><div class="behavior-stats"><div><strong>4.2<span>%</span></strong><span>Off actions · HotpotQA</span></div><span class="behavior-arrow" aria-hidden="true">→</span><div><strong>21.3<span>%</span></strong><span>Off actions · HLE</span></div></div><p class="source-note">DeepSeek-V4-Flash · Section 4.3.2. “Off” skips the agent’s LLM call; “solo” keeps independent inference without communication.</p></div>
-          <figure class="behavior-figure"><button type="button" class="image-button" data-zoom="assets/action-distribution.webp" data-caption="Figure 6 · Communication-action distributions on HotpotQA and HLE with DeepSeek-V4-Flash." aria-label="Enlarge communication-action distribution chart"><img src="assets/action-distribution.webp" alt="Action distributions on HotpotQA and HLE. Off actions increase from 4.2% on HotpotQA to 21.3% on HLE." width="2820" height="1289" loading="lazy"></button><figcaption><span>FIGURE 6</span> Different tasks induce different communication patterns.</figcaption></figure>
+          <div class="behavior-copy"><span class="small-label">COMMUNICATE WHEN IT HELPS</span><h3>Collaborate selectively.<br> Know when to stop.</h3><p>On HotpotQA, complementary evidence supports sustained interaction. On HLE, where the manuscript finds little accuracy uplift from collaboration, the learned policy deactivates agents more often.</p><div class="behavior-stats"><div><strong>4.2<span>%</span></strong><span>Off actions · HotpotQA</span></div><span class="behavior-arrow" aria-hidden="true">→</span><div><strong>21.3<span>%</span></strong><span>Off actions · HLE</span></div></div><p class="source-note">DeepSeek-V4-Flash · Section 4.3.2. “Off” skips the agent’s LLM call; “solo” keeps independent inference without communication.</p></div>
+          <figure class="paper-figure research-figure action-figure"><div class="figure-heading"><h3>Communicate when it helps</h3><a class="text-button" href="assets/action-distribution.webp" target="_blank" rel="noopener">Open original <span aria-hidden="true">↗</span></a></div><button type="button" class="image-button" data-zoom="assets/action-distribution.webp" data-caption="Figure 6 · Communication-action distributions on HotpotQA and HLE with DeepSeek-V4-Flash." aria-label="Enlarge communication-action distribution chart"><img src="assets/action-distribution.webp" alt="Action distributions on HotpotQA and HLE. Off actions increase from 4.2% on HotpotQA to 21.3% on HLE." width="2820" height="1289" loading="lazy"><span class="figure-enlarge" aria-hidden="true">View full size ↗</span></button><figcaption><span>FIGURE 6</span> Different tasks induce different communication patterns. DeepSeek-V4-Flash selects off more often on HLE than on HotpotQA.</figcaption></figure>
         </div>
-        <details class="case-details"><summary><span>Follow the communication across rounds</span><span class="summary-action">See the paper’s case study <span aria-hidden="true">+</span></span></summary><figure class="paper-figure"><button type="button" class="image-button" data-zoom="assets/case-study.webp" data-caption="Figure 8 · The manuscript’s trajectory-level examples for HotpotQA and HLE." aria-label="Enlarge trajectory case study"><img src="assets/case-study.webp" alt="Manuscript case study showing selective routing on a HotpotQA question and progressive agent deactivation on an HLE question." width="2406" height="1200" loading="lazy"></button><figcaption><span>FIGURE 8</span> Selected communication trajectories from the manuscript, distinct from the illustrative interactive diagram above.</figcaption></figure></details>
+        <figure class="paper-figure research-figure heatmap-figure">
+          <div class="figure-heading"><h3>Task-dependent communication choices</h3><a class="text-button" href="assets/action-heatmap.webp" target="_blank" rel="noopener">Open original <span aria-hidden="true">↗</span></a></div>
+          <button type="button" class="image-button" data-zoom="assets/action-heatmap.webp" data-caption="Figure 7 · Shares of the six communication actions across nine benchmarks with DeepSeek-V4-Flash." aria-label="Enlarge the communication-action heatmap"><img src="assets/action-heatmap.webp" alt="Heatmap of off, solo, broadcast, attention-guided broadcast, receive, and attention-guided receive action shares across nine benchmarks with DeepSeek-V4-Flash." width="2776" height="1521" loading="lazy"><span class="figure-enlarge" aria-hidden="true">View full size ↗</span></button>
+          <figcaption><span>FIGURE 7</span> The learned policy changes its communication profile across benchmarks. Each cell reports an action's share of decision rounds with DeepSeek-V4-Flash.</figcaption>
+        </figure>
+        <figure class="paper-figure research-figure case-figure">
+          <div class="figure-heading"><h3>Communication across rounds</h3><a class="text-button" href="assets/case-study.webp" target="_blank" rel="noopener">Open original <span aria-hidden="true">↗</span></a></div>
+          <button type="button" class="image-button" data-zoom="assets/case-study.webp" data-caption="Figure 8 · Two schematic examples of selective communication and early stopping from the supplied manuscript. Original example labels and action diagrams differ from the current method description." aria-label="Enlarge the manuscript communication examples"><img src="assets/case-study.webp" alt="Two schematic examples of selective communication and early stopping from the supplied manuscript." width="2406" height="1200" loading="lazy"><span class="figure-enlarge" aria-hidden="true">View full size ↗</span></button>
+          <figcaption><span>FIGURE 8</span> Two original manuscript illustrations show how exchanges can change across rounds.<span class="figure-note">The original example labels and action diagrams differ from the current method description; these illustrations are not presented as verified experimental trajectories.</span></figcaption>
+        </figure>
       </div>
     </section>
 
