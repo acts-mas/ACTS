@@ -15,6 +15,16 @@ body{background:#fff}
 .paper-title-context{font-size:clamp(17px,1.55vw,20px);line-height:1.5;margin-top:2px;color:#647168;letter-spacing:-.02em}
 .hero-word{color:inherit}
 .hero-word svg{display:none}
+.authors{margin:24px auto 0;font-size:15px;line-height:1.8;font-weight:500;color:var(--ink)}
+.author-row{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 24px}
+.author-row+.author-row{margin-top:3px}
+.author{white-space:nowrap}
+.author sup{color:var(--green);margin-left:2px;font-size:.7em;font-weight:500}
+.affiliations{display:flex;flex-wrap:wrap;justify-content:center;gap:3px 20px;margin:13px auto 0;font-size:12px;line-height:1.8;color:var(--muted)}
+.affiliations>span{display:inline-block}
+.affiliations sup{margin-right:3px;color:var(--green)}
+.author-notes{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 18px;margin-top:8px;font-size:11px;line-height:1.7;color:var(--muted)}
+.author-notes>span{white-space:nowrap}
 .hero-description{font-size:15px;max-width:610px;margin:20px auto 23px}
 .hero-note{margin-top:18px}
 .abstract-section{background:var(--cream);border-top:1px solid #f0eee7;border-bottom:1px solid #ebe9e1}
@@ -112,5 +122,6 @@ body{background:#fff}
   .wrap{width:calc(100% - 40px)}.site-header{height:66px}.header-inner{width:calc(100% - 34px)}.main-nav{gap:15px}.main-nav a{font-size:10px}.hero{padding:50px 0 42px}.hero h1{line-height:1.16}.paper-title-lede{font-size:clamp(25px,7.5vw,34px)}.paper-title-main{font-size:clamp(18px,4.8vw,23px);line-height:1.35;margin-top:7px}.paper-title-context{font-size:clamp(14px,3.8vw,17px);line-height:1.5;margin-top:4px}.hero-description{font-size:13px}.abstract-layout{grid-template-columns:1fr;gap:25px}.abstract-lede h2{font-size:38px}.abstract-lede>p{font-size:14px;margin-top:17px}.abstract-copy p{font-size:13px}.abstract-figure{margin-top:38px}.section{padding-top:62px;padding-bottom:65px}.section-heading{display:block}.section-heading h2{font-size:38px}.section-side-note{display:none}.method-points{grid-template-columns:1fr;gap:25px;margin-top:31px;padding:24px 0}.primary-figure .image-button,.featured-architecture .image-button{padding-top:17px}.research-details>summary{font-size:13px;padding:20px 0}.impact-band{grid-template-columns:repeat(2,1fr);margin-top:23px;margin-bottom:31px}.impact-band>div{padding:19px 17px}.impact-band strong{font-size:27px}.impact-band small{font-size:9px}.results-explorer{padding:23px 17px 20px}.explorer-heading{display:block}.explorer-heading h3{font-size:22px}.explorer-heading .results-toolbar{align-items:flex-start;margin-top:20px}.results-grid{grid-template-columns:1fr;gap:16px}.result-callout{padding:18px 19px}.primary-analysis{grid-template-columns:1fr;gap:31px;margin-top:25px}.primary-analysis .behavior-copy h3{font-size:31px}.more-analyses{margin-top:45px}.more-analyses .information-figure img{max-height:410px}.more-analyses .heatmap-figure img{max-height:360px}.paper-card{padding:30px 24px}.site-footer{width:calc(100% - 40px)}
 }
 @media(max-width:480px){
+  .authors{margin-top:20px;font-size:14px}.author-row{gap:3px 19px}.author-row:first-child{display:grid;grid-template-columns:repeat(2,max-content)}.author-row+.author-row{margin-top:3px}.affiliations{flex-direction:column;align-items:center;gap:1px;font-size:11px;margin-top:12px}.author-notes{font-size:10px;gap:2px 13px;margin-top:7px}
   .wrap{width:calc(100% - 32px)}.header-inner{width:calc(100% - 26px)}.main-nav{gap:11px}.main-nav a[href="#overview"]{display:none}.hero{padding-top:41px}.hero-eyebrow{font-size:8px}.hero h1{line-height:1.18}.paper-title-lede{font-size:29px}.paper-title-main{font-size:19px;line-height:1.4;margin-top:6px}.paper-title-context{font-size:14px;line-height:1.5}.hero-description{font-size:12px}.abstract-lede h2{font-size:34px}.abstract-copy p{font-size:12px}.role-chips span{font-size:9px;padding:6px 9px}.section-heading h2{font-size:33px}.section-intro{font-size:12px}.section-label{font-size:9px}.impact-band strong{font-size:24px}.impact-band strong span{font-size:15px}.impact-band small{font-size:8px}.results-explorer{padding:21px 14px 17px}.explorer-heading h3{font-size:20px}.chart-panel{padding:21px 15px}.research-details>summary{gap:12px}.summary-action{font-size:9px}.details-subhead{font-size:12px}.primary-analysis .behavior-copy h3{font-size:29px}.primary-analysis .behavior-copy>p{font-size:12px}.behavior-stats{gap:18px}.behavior-stats strong{font-size:30px}.paper-card h2{font-size:31px}
 }

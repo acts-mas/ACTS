@@ -25,23 +25,43 @@
   });
   if (Array.isArray(config.authors) && config.authors.length) {
     const authors = $('#authors');
+    let row;
     config.authors.forEach((author,index) => {
-      if (index) authors.append(document.createTextNode('  ·  '));
+      if (!index || author.breakBefore) {
+        row = document.createElement('div');
+        row.className = 'author-row';
+        authors.append(row);
+      }
       const item = document.createElement(safeUrl(author.url) ? 'a' : 'span');
+      item.className = 'author';
       item.textContent = author.name;
       if (safeUrl(author.url)) { item.href = author.url; item.target = '_blank'; item.rel = 'noopener'; }
       if (author.affiliation) {
         const sup = document.createElement('sup');
-        sup.textContent = author.affiliation;
+        sup.textContent = author.affiliation + (author.note ? ',' + author.note : '');
         item.append(sup);
       }
-      authors.append(item);
+      row.append(item);
     });
     authors.hidden = false;
   }
   if (Array.isArray(config.affiliations) && config.affiliations.length) {
-    $('#affiliations').textContent = config.affiliations.join('   ·   ');
+    config.affiliations.forEach((affiliation) => {
+      const item = document.createElement('span');
+      const sup = document.createElement('sup');
+      sup.textContent = affiliation.id;
+      item.append(sup, document.createTextNode(affiliation.name));
+      $('#affiliations').append(item);
+    });
     $('#affiliations').hidden = false;
+  }
+  if (Array.isArray(config.authorNotes) && config.authorNotes.length) {
+    config.authorNotes.forEach((note) => {
+      const item = document.createElement('span');
+      item.textContent = note.symbol + ' ' + note.text;
+      $('#author-notes').append(item);
+    });
+    $('#author-notes').hidden = false;
   }
   if (config.bibtex) {
     $('#bibtex').textContent = config.bibtex;
