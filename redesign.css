@@ -3,8 +3,8 @@
 body{background:#fff}
 .wrap{max-width:1040px;width:calc(100% - 64px)}
 .site-header{height:72px}
-.header-inner{max-width:1120px;width:calc(100% - 56px)}
-.main-nav{gap:25px}
+.header-inner{max-width:1120px;width:calc(100% - 56px);justify-content:flex-start}
+.main-nav{gap:25px;margin-inline:auto}
 .main-nav a{font-size:12px}
 .hero{max-width:980px;padding:64px 0 58px}
 .hero-eyebrow{margin-bottom:22px}
