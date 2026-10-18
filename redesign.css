@@ -81,11 +81,11 @@ body{background:#fff}
 .primary-analysis{display:grid!important;grid-template-columns:.82fr 1.18fr;gap:60px;align-items:center;flex-direction:initial!important;margin-top:35px}
 .primary-analysis .behavior-copy h3{font-size:35px;margin:15px 0 16px}
 .primary-analysis .behavior-copy>p{font-size:13px}
-.primary-analysis .behavior-figure{border:0;border-radius:0;background:transparent}
-.primary-analysis .behavior-figure .figure-heading{padding:0 0 14px;border-bottom:1px solid var(--line)}
-.primary-analysis .behavior-figure .image-button{padding:20px 0 8px;background:#fff}
-.primary-analysis .behavior-figure .image-button img{border:1px solid #e6ece6;border-radius:8px}
-.primary-analysis .behavior-figure figcaption{padding-left:0;padding-right:0;text-align:left}
+.primary-analysis .action-figure{border:0;border-radius:0;background:transparent}
+.primary-analysis .action-figure .figure-heading{padding:0 0 14px;border-bottom:1px solid var(--line)}
+.primary-analysis .action-figure .image-button{padding:20px 0 8px;background:#fff}
+.primary-analysis .action-figure .image-button img{border:1px solid #e6ece6;border-radius:8px}
+.primary-analysis .action-figure figcaption{padding-left:0;padding-right:0;text-align:left}
 .more-analyses{margin-top:61px}
 .more-analyses .information-figure,.more-analyses .heatmap-figure,.more-analyses .case-figure{border:0;border-radius:0;background:transparent;margin:27px 0 39px}
 .more-analyses .figure-heading{padding:0 0 14px;border-bottom:1px solid var(--line)}
