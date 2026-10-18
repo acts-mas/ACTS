@@ -15,7 +15,6 @@
     } catch { return null; }
   };
 
-  if (safeUrl(config.paperUrl)) $$('[data-paper-link]').forEach((link) => { link.href = config.paperUrl; });
   [['#code-link',config.codeUrl],['#arxiv-link',config.arxivUrl]].forEach(([selector,url]) => {
     if (!safeUrl(url)) return;
     const link = $(selector);
